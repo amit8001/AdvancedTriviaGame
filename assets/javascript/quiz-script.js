@@ -5,6 +5,10 @@ var ans;
 var q;
 var correctAns;
 var incorrectAns;
+var timeleft;
+var unanswered;
+var downloadTimer;
+
 
 var container = $("#quiz");
 var questionEl = $("#question");
@@ -33,19 +37,7 @@ function correctstyleeffect(){
     console.log(correctAns);
     console.log(currentQuestion);
     console.log(totalQuestions);
-    if(currentQuestion < totalQuestions){ 
-        setTimeout(function(){
-            $("#result").hide();  
-            $("#quiz").show();   
-            loadQuestion(currentQuestion);
-            $("#y").text(totalQuestions);
-            $("#x").text(currentQuestion+1);
-        },5000);
-    }
-    else{
-        setTimeout(function(){summary()},3000);
-        
-    }
+    shownextq();
 }
 
 function incorrectstyleeffect(){
@@ -54,24 +46,14 @@ function incorrectstyleeffect(){
     $("#result").html("Nope! That was not correct !!<br>The correct answer was: "+ans);
     $("#quiz").hide();
     console.log(incorrectAns);
-    if(currentQuestion < totalQuestions){ 
-        setTimeout(function(){
-            $("#result").hide();  
-            $("#quiz").show();   
-            loadQuestion(currentQuestion);
-            $("#y").text(totalQuestions);
-            $("#x").text(currentQuestion+1);
-        },5000);
-    }
-    else{
-        setTimeout(function(){summary()},3000);
-    }
+    shownextq();
 }
 function summary(){
     $("#result").show();
-    $("#result").html("Here is how you did!<br><br>Correct :"+correctAns+"<br>Incorrect: "+incorrectAns);
+    $("#result").html("Here is how you did!<br><br>Correct :"+correctAns+"<br>Incorrect: "+incorrectAns+"<br>Unanswered: "+unanswered);
     $("#quiz").hide();
     $("#st_ovr").show();
+    $("#countdowntimer").hide();
     
     $("#st_ovr").html("Start Over?");
         $("#st_ovr").on("click", function() {
@@ -80,6 +62,7 @@ function summary(){
             start();
             $("#result").hide();
             $("#st_ovr").hide();
+            $("#countdowntimer").show()
         })
 
 
@@ -91,7 +74,13 @@ function start(){
     $("#x").text(currentQuestion+1);
     correctAns =0;
     incorrectAns =0;
+    unanswered =0;
+    clearInterval(downloadTimer);
     $("#st_ovr").hide();
+
+    //need to show countdown timer. If time remaining is 0, show result page for that question
+    timer();
+    
 }
 
  //click the right button that you think is right
@@ -99,8 +88,9 @@ function start(){
 
 $(".btn").on("click", function() {
     console.log($(this).text());
+    clearInterval(downloadTimer);
     currentQuestion++;
- //   if(currentQuestion <= totalQuestions){
+ 
         if(ans == $(this).text()){
             console.log("COrrect");
             correctAns++;   
@@ -112,15 +102,44 @@ $(".btn").on("click", function() {
             incorrectAns++;
             incorrectstyleeffect();   
         }
-   // }
-   // else
-  //  {
-   //     summary();
-   // }    
-    
 });
 
+   
+function timer(){
+    var timeleft = 25;
+    $("#countdowntimer").text(timeleft);
+    downloadTimer = setInterval(function(){
+        timeleft--;
+        $("#countdowntimer").text(timeleft);
+        if(timeleft == 0){
+            clearInterval(downloadTimer);
+            
+            $("#result").show();
+            $("#result").html("You are out of time !!<br>The correct answer was: "+ans);
+            $("#quiz").hide();
+            currentQuestion++;
+            unanswered++;
+            //call the next question and display it after 5 seconds
+            shownextq();
 
+        }
+    },1000);
+}
 
+function shownextq(){
 
+            if(currentQuestion < totalQuestions){ 
+                setTimeout(function(){
+                    $("#result").hide();  
+                    $("#quiz").show();   
+                    loadQuestion(currentQuestion);
+                    $("#y").text(totalQuestions);
+                    $("#x").text(currentQuestion+1);
+                    timer();
+                },5000);
+            }
+            else{
+                setTimeout(function(){summary()},3000);
+            }
+}
 
