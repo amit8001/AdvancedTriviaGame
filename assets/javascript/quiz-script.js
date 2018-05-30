@@ -50,12 +50,14 @@ function incorrectstyleeffect(){
 }
 function summary(){
     $("#result").show();
-    $("#result").html("Here is how you did!<br><br>Correct :"+correctAns+"<br>Incorrect: "+incorrectAns+"<br>Unanswered: "+unanswered);
+    $("#result").html("Here is how you did!<br><br>Correct: "+correctAns+"<br>Incorrect: "+incorrectAns+"<br>Unanswered: "+unanswered);
     $("#quiz").hide();
     $("#st_ovr").show();
     $("#countdowntimer").hide();
     $("#cdt").hide();
-    
+    $("#start").hide();
+    $("#progress").hide();
+    $("#hline").hide();
     $("#st_ovr").html("Start Over?");
         $("#st_ovr").on("click", function() {
             currentQuestion=0;
@@ -65,6 +67,7 @@ function summary(){
             $("#result").hide();
             $("#st_ovr").hide();
             $("#countdowntimer").show()
+            $("#hline").show();
         })
 
 
@@ -79,7 +82,7 @@ function start(){
     unanswered =0;
     clearInterval(downloadTimer);
     $("#st_ovr").hide();
-
+    $("#progress").show();
     //need to show countdown timer. If time remaining is 0, show result page for that question
     timer();
     
@@ -117,6 +120,7 @@ function timer(){
             clearInterval(downloadTimer);
             
             $("#result").show();
+            $("#progress").show();
             $("#result").html("You are out of time !!<br>The correct answer was: "+ans);
             $("#quiz").hide();
             currentQuestion++;
@@ -134,6 +138,7 @@ function shownextq(){
                 setTimeout(function(){
                     $("#result").hide();  
                     $("#quiz").show();   
+                    $("#progress").show();
                     loadQuestion(currentQuestion);
                     $("#y").text(totalQuestions);
                     $("#x").text(currentQuestion+1);
@@ -145,3 +150,29 @@ function shownextq(){
             }
 }
 
+function inistart(){
+    $("#result").hide();
+    $("#quiz").hide();
+    $("#st_ovr").hide();
+    $("#countdowntimer").hide();
+    $("#cdt").hide();
+    $("#start").show();
+    $("#progress").hide();
+    $("#hline").hide();
+  
+    
+    $("#start").html("Start");
+        $("#start").on("click", function() {
+            currentQuestion=0;
+            $("#quiz").show();
+            $("#cdt").show();
+            start();
+            $("#result").hide();
+            $("#start").hide();
+            $("#st_ovr").hide();
+            $("#countdowntimer").show()
+            $("#hline").show();
+        })
+
+
+}

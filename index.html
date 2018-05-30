@@ -8,10 +8,10 @@
 <link href="assets/css/style.css" rel ="stylesheet">
 </head>
 
-<body onload="start()">
+<body onload="inistart()">
   <div class = "grid">
-    <div id  = "quiz">
-      <h1>Trivia! </h1>
+      <h1>Trivia Trivia Trivia! </h1>
+    <div id  = "quiz">      
       <p id="question"></p>
       <hr>
       <div class = "buttons">
@@ -24,8 +24,9 @@
     <div id="result"></div>
     <!--<div id="st_ovr"></div>-->
     <button id = "st_ovr"></button>
+    <div id ="btnhlder"><button id = "start" onclick="start()"></button></div>
     <div id ="cdt">Time remaining: <span id ="countdowntimer"></span> secs</div>
-    <hr>
+    <hr id ="hline">
     <footer>
         <p id="progress">Question <span id ="x"></span> of <span id="y"></span></p>
     </footer>

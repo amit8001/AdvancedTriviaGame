@@ -51,11 +51,24 @@ padding: 10px 10px;
   font-size: 30px;
 }
 
-#st_ovr{
+#st_ovr, #start{
   margin-top: 30px;
   background-color: blue;
   color: azure;
   padding: 15px 32px;
   cursor: pointer;
   text-align: center;
-}
+  font-size: 30px;
+ }
+ #btnhlder{
+   text-align: center;
+   margin-top: 150px;
+   margin-bottom: auto;
+ }
+ #x, #y, #countdowntimer{
+   font-size: 20px;
+   font-weight: bold;
+ }
+ #cdt, #progress {
+  font-size: 20px;
+ }
