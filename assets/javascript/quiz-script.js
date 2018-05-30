@@ -32,7 +32,7 @@ function loadQuestion(questionIndex){
 function correctstyleeffect(){
     console.log("Hello "+currentQuestion);
     $("#result").show();
-    $("#result").text("Correct !!");
+    $("#result").text("That is correct !!");
     $("#quiz").hide();
     console.log(correctAns);
     console.log(currentQuestion);
@@ -54,11 +54,13 @@ function summary(){
     $("#quiz").hide();
     $("#st_ovr").show();
     $("#countdowntimer").hide();
+    $("#cdt").hide();
     
     $("#st_ovr").html("Start Over?");
         $("#st_ovr").on("click", function() {
             currentQuestion=0;
             $("#quiz").show();
+            $("#cdt").show();
             start();
             $("#result").hide();
             $("#st_ovr").hide();
