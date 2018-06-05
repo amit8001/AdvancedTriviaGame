@@ -1,3 +1,6 @@
+//This file defines a global variable that is an ARRAY of objects 
+//containing questions, its options and the correct answer for each.
+
 var questions = [{
     "question": "Web pages are created using ?",
     "option0":"FTP",
@@ -30,4 +33,12 @@ var questions = [{
     "option3":"Array",
     "answer": "Array"
 },
+{
+    "question": "How can you make a website mobile responsive?",
+    "option0":"Media Queries",
+    "option1":"Oracle",
+    "option2":"PL/SQL",
+    "option3":"DB2",
+    "answer": "Media Queries"
+}
 ]
