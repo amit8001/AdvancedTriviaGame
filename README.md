@@ -17,16 +17,18 @@ If you don't answer the question within 25 seconds, then a message is displayed
 a. stating that the user is out of time! The correct answer is also shown.
 b. the timer shows the time left as 0 secs.
 
-After every question attempt/non attempt, results for that question are displayed as stated above
-and that is shown for 5 seconds. After that without any user input, the next question is displayed.
+After every question attempt/non attempt (within 25 secs), results for that question are displayed 
+as stated above and that is shown for 5 seconds. After that without any user input, the next question 
+is displayed.
 
-This continues till you attempt the last question. After you see the results for the last question, you will
-see a summary of the entire run/iteration of the game for that session. This will have the below metrics,
+This continues till you attempt the last question. In this case only for the last question, it's results 
+are shown for 3 secs and after that you will see a summary of the entire run/iteration of the game 
+for that session. This will have the below metrics,
 a. How many were answered correctly?
 b. How many were unanswered?
 c. How many were answered incorrectly?
-There is also a Start Over button below the metrics information. If the user clicks it, then the game resets 
-and starts over without any page refreshes.
+There is also a Start Over button below the metrics information. If the user clicks it, then the 
+game resets and starts over without any page refreshes.
 
 
 
